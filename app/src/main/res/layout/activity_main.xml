@@ -18,4 +18,16 @@
         android:textColor="#9b92b3"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/connect_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="connect"
+        android:background="#9b92b3"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+
+
 </LinearLayout>
