@@ -22,8 +22,12 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
+    Boolean connectBool = false;
+    String connectionMsg;
+
     Button connectBtn;
     EditText loginTst;
+    Button testSearchBtn;
 
     private SBlockchain sBlockchain;
     private HardwareWallet hardwareWallet;
@@ -47,14 +51,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connect();
-                String msg = "connection success";
+                String msg = connect();
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
             }
         });
+
+        testSearchBtn = findViewById(R.id.test_search_btn);
+        testSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class );
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private void connect(){
+    private String connect(){
         sBlockchain.getHardwareWalletManager() //cold wallet 리턴
                 .connect(HardwareWalletType.SAMSUNG, true)
                 .setCallback(new ListenableFutureTask.Callback<HardwareWallet>() { //비동기 (oncreate 안의 함수들이 동작했는지 확인하기 위해! 개별적인 함수 connect, generate, .. 각각의 함수가 성공 후 성공했다고 리턴)
@@ -62,11 +75,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     public void onSuccess(HardwareWallet w) {
                         hardwareWallet = w; // callback 에서 생성된 hard wallet 사용
                         Log.d("SUCCESS TAG", "connection success");
+                        connectionMsg = "connection success";
+
+                        connectBool = true;
                     }
 
                     @Override
                     public void onFailure(ExecutionException e) {
                         Log.d("ERROR TAG", e.toString());
+                        connectionMsg = "connection failure";
+
                     }
 
                     @Override
@@ -74,6 +92,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                     }
                 });
+
+        return connectionMsg;
+
     }
 
     private void initUI() {
@@ -81,9 +102,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnHorizontalNtb.setOnClickListener(this);
     }
 
-
+// Go to BeyondCloud
     @Override
     public void onClick(final View v) {
+
+        if(!connectBool){
+            String msg = "wallet connection failure";
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ViewCompat.animate(v)
                 .setDuration(200)
                 .scaleX(0.9f)
@@ -98,6 +126,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onAnimationEnd(final View view) {
                         switch (v.getId()) {
+                            // main > Go to BeyondCloud
                             case R.id.btn_horizontal_ntb:
                                 startActivity(
                                         new Intent(MainActivity.this, HorizontalNtbActivity.class)

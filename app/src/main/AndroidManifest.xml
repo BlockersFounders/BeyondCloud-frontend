@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="devlight.io.sample"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="devlight.io.sample">
 
     <application
         android:allowBackup="true"
@@ -9,19 +8,22 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <activity android:name=".temp2"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".HorizontalNtbActivity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".HorizontalNtbActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"/>
 
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -8,11 +8,45 @@
     android:background="#423752"
     android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_horizontal_ntb"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_horizontal_ntb"
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_horizontal_ntb5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_horizontal_ntb2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_horizontal_ntb3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_horizontal_ntb_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
 
     <devlight.io.library.ntb.NavigationTabBar
         android:id="@+id/ntb_horizontal"

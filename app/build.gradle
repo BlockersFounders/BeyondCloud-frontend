@@ -31,8 +31,9 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:gridlayout-v7:27.1.1'
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     repositories {
-        flatDir{
+        flatDir {
             dirs 'libs'
         }
     }
